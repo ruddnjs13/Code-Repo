@@ -25,10 +25,8 @@ public class Player : Agent
 
     [SerializeField] private InputReaderSO _inputReader;
     public InputReaderSO playerInput => _inputReader;
-    
 
     public UnityEvent OnDeadEvent;
-
     
     public PlayerStateMachine StateMachine { get; private set; }
 
@@ -78,25 +76,12 @@ public class Player : Agent
         StateMachine.CurrentState.StateUpdate();
     }
 
-    private void LateUpdate()
-    {
-    }
-
-    private void FixedUpdate()
-    {
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             StateMachine.ChangeState(PlayerStateEnum.Dead);
         }
-    }
-
-    public virtual void HandleJumpEvent()
-    {
-        
     }
 
     public void MovePlayer()
@@ -107,6 +92,4 @@ public class Player : Agent
     {
         _inputReader.RockInput(true);
     }
-
-    
 }
